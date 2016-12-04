@@ -25,8 +25,8 @@ defmodule Poniverse do
     OAuth2.Client.authorize_url!(client())
   end
 
-  def get_token!(params \\ [], headers \\ [], opts \\ []) do
-    OAuth2.Client.get_token!(client(), params, headers, opts)
+  def get_token!(params \\ [], headers \\ []) do
+    OAuth2.Client.get_token!(client(), Keyword.merge(params, client_secret: client().client_secret))
   end
 
   @doc ~S"""
