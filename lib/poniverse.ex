@@ -1,5 +1,10 @@
 defmodule Poniverse do
+  @moduledoc """
+  An OAuth2 strategy for Poniverse.
+  """
   use OAuth2.Strategy
+
+  alias OAuth2.Strategy.AuthCode
 
   defp config do
     [
@@ -38,8 +43,7 @@ defmodule Poniverse do
 
   def get_token(client, params, headers) do
     client
-    |> put_param(:client_secret, client.client_secret)
     |> put_header("accept", "application/json")
-    |> OAuth2.Strategy.AuthCode.get_token(params, headers)
+    |> AuthCode.get_token(params, headers)
   end
 end
